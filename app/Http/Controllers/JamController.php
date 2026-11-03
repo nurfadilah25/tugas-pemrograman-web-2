@@ -130,8 +130,10 @@ class JamController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jam $jam)
     {
-        //
+        $jam->delete();
+
+        return to_route('jam.index')->with('success','Data jam berhasil dihapus');
     }
 }

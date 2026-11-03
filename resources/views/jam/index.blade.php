@@ -35,8 +35,19 @@
                     <td>{{ $jam->stock }}</td>
                     <td>{{ $jam->description }}</td>
                     <td>
-                        <a class="btn btn-warning btn-sm" href="{{ route('jam.edit', $jam->id) }}">edit</a>
-                        <a class="btn btn-info btn-sm" href="{{ route('jam.show', $jam->id) }}">Show</a>
+                        <div class="d-inline text-nowrap">
+
+                            <a class="btn btn-warning btn-sm" href="{{ route('jam.edit', $jam->id) }}">edit</a>
+                            <a class="btn btn-info btn-sm" href="{{ route('jam.show', $jam->id) }}">Show</a>
+
+                            <form action="{{ route('jam.destroy', $jam->id) }}" method="post" class="d-inline">
+                                @csrf
+                                @method('delete')
+
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
+                            </form>
+                        </div>
 
                     </td>
                 </tr>
