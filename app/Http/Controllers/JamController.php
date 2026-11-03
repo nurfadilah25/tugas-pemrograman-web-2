@@ -60,7 +60,7 @@ class JamController extends Controller
             'description.required' => 'Deskripsi wajib diisi',
             'description.string' => 'Deskripsi harus berupa teks',
         ]);
-        
+
         Jam::create($validated);
 
         return to_route('jam.index')->with('success', 'Data jam baru ditambahkan');
@@ -81,17 +81,50 @@ class JamController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Jam $jam)
     {
-        return view('jam.edit', ['title' => 'Edit Data Jam']);
+        return view('jam.edit', ['title' => 'Edit Data Jam', 'jam' => $jam]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Jam $jam)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|min:3',
+            'brand' => 'required|string',
+            'category' => 'required|string',
+            'price' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'required|string',
+        ], [
+            'name.required' => 'Nama jam wajib diisi',
+            'name.string' => 'Nama jam harus berupa teks',
+            'name.min' => 'Nama jam minimal :min karakter',
+
+            'brand.required' => 'Merek wajib diisi',
+            'brand.string' => 'Merek harus berupa teks',
+
+            'category.required' => 'Kategori wajib diisi',
+            'category.string' => 'Kategori harus berupa teks',
+
+            'price.required' => 'Harga wajib diisi',
+            'price.integer' => 'Harga harus berupa angka bulat tanpa titik atau koma',
+            'price.min' => 'Harga tidak boleh kurang dari :min',
+
+            'stock.required' => 'Stok wajib diisi',
+            'stock.integer' => 'Stok harus berupa angka bulat',
+            'stock.min' => 'Stok tidak boleh kurang dari :min',
+
+            'description.required' => 'Deskripsi wajib diisi',
+            'description.string' => 'Deskripsi harus berupa teks',
+        ]);
+
+        $jam->update($validated);
+
+        return to_route('jam.index')->with('success', 'Data jam baru diubah');
+
     }
 
     /**

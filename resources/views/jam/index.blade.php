@@ -35,6 +35,7 @@
                     <td>{{ $jam->stock }}</td>
                     <td>{{ $jam->description }}</td>
                     <td>
+                        <a class="btn btn-warning btn-sm" href="{{ route('jam.edit', $jam->id) }}">edit</a>
                         <a class="btn btn-info btn-sm" href="{{ route('jam.show', $jam->id) }}">Show</a>
 
                     </td>
