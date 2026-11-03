@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jam;
 use Illuminate\Http\Request;
 
 class JamController extends Controller
@@ -11,7 +12,10 @@ class JamController extends Controller
      */
     public function index()
     {
-        return view('jam.index', ['title' => 'Jam']);
+        return view('jam.index', [
+            'title' => 'Jam',
+            'jams' => Jam::latest()->get(),
+        ]);
     }
 
     /**
@@ -19,7 +23,7 @@ class JamController extends Controller
      */
     public function create()
     {
-         return view('jam.create', ['title' => 'Tambah Data Jam']);
+        return view('jam.create', ['title' => 'Tambah Data Jam']);
     }
 
     /**
@@ -33,9 +37,12 @@ class JamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Jam $jam)
     {
-         return view('jam.show', ['title' => 'Detail Jam']);
+        return view('jam.show', [
+            'title' => 'Detail Jam',
+            'jam' => $jam,
+        ]);
     }
 
     /**
@@ -43,7 +50,7 @@ class JamController extends Controller
      */
     public function edit(string $id)
     {
-         return view('jam.edit', ['title' => 'Edit Data Jam']);
+        return view('jam.edit', ['title' => 'Edit Data Jam']);
     }
 
     /**
