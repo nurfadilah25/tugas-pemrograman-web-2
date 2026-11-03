@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['nama', 'brand', 'category', 'price', 'stock', 'description'])]
+#[Fillable(['name', 'brand', 'category', 'price', 'stock', 'description'])]
 class Jam extends Model
 {
     /** @use HasFactory<JamFactory> */
